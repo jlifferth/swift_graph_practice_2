@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SecondViewController.swift
 //  swift_graph_practice_2
 //
 //  Created by Jonathan Lifferth on 7/1/21.
@@ -8,39 +8,36 @@
 import Charts
 import UIKit
 
-class ViewController: UIViewController, ChartViewDelegate {
+class SecondViewController: UIViewController, ChartViewDelegate {
     
-    var barChart = BarChartView()
+    var lineChart = LineChartView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        barChart.delegate = self
+        lineChart.delegate = self
+
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        barChart.frame = CGRect(x: 0, y: 0,
+        lineChart.frame = CGRect(x: 0, y: 0,
                                 width: self.view.frame.size.width,
                                 height: self.view.frame.size.width)
-        barChart.center = view.center
-        view.addSubview(barChart)
+        lineChart.center = view.center
+        view.addSubview(lineChart)
         
-        var entries = [BarChartDataEntry]()
+        var entries = [ChartDataEntry]()
         
         for x in 0..<10 {
-            entries.append(BarChartDataEntry(x: Double(x),
+            entries.append(ChartDataEntry(x: Double(x),
                                              y: Double(x)))
         }
         
-        let set = BarChartDataSet(entries: entries)
-        
+        let set = LineChartDataSet(entries: entries)
         set.colors = ChartColorTemplates.joyful()
-        
-        let data = BarChartData(dataSet: set)
-        
-        barChart.data = data
+        let data = LineChartData(dataSet: set)
+        lineChart.data = data
     }
 
 }
-
